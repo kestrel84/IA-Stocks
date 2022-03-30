@@ -9,7 +9,6 @@ public class Database {
     private final String deleteFlag;
 
 
-
     public Database(String fileName, int lineLength, String deleteFlag) {
         this.fileName = fileName;
         this.lineLength = lineLength;
