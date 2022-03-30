@@ -8,5 +8,13 @@ public class Stock extends Asset{
         this.name = name;
     }
 
-    //TODO add a method to convert the information to a file format
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    //TODO add a method to convert the information to a text file readable format
 }

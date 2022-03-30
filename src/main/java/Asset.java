@@ -6,4 +6,12 @@ public class Asset {
         this.amount = amount;
         this.price = price;
     }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public double getPrice() {
+        return price;
+    }
 }
