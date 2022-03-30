@@ -13,7 +13,6 @@ public class Main {
                 .key("7T61LRZASTFH3RCB")
                 .timeOut(10)
                 .build();
-
         //initialize api
         AlphaVantage.api().init(cfg);
 
@@ -50,12 +49,14 @@ public class Main {
             e.printStackTrace();
         }
 */
-// didn't work
+        //spoilers: it didn't work
 
 
 
 
     }
+
+
 
 
 }
