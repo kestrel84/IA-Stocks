@@ -22,7 +22,7 @@ public class Database {
         //adds on one record to the end of the file/database
 
         if (data.length() <= lineLength){
-            FileHandler.randomWriteString(fileName, lineLength*recordCount, (String.format("%-" + lineLength + "s", data) + "\r\n"));
+            FileHandler.randomWriteString(fileName, (lineLength+2)*recordCount, (String.format("%-" + lineLength + "s", data) + "\r\n"));
             recordCount++;
         } else {
             System.out.println("error: message too long for the database");

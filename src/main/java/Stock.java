@@ -12,6 +12,8 @@ public class Stock extends Asset{
         this.symbol = symbol;
         this.name = name;
     }
+    //TODO urgent: make a constructor that can be passed a file format string and make a stock object out of it
+
 
     public String getSymbol() {
         return symbol;
@@ -26,9 +28,7 @@ public class Stock extends Asset{
     public String convertToFileFormat(){
         return (String.format("%-25s", name) + String.format("%-25s", symbol) + String.format("%-25s", getAmount()) + String.format("%-25s", getPrice()));
     }
-
-    public int REMOVETHIS(){
-        return (String.format("%-25s", name) + String.format("%-25s", symbol) + String.format("%-25s", getAmount()) + String.format("%-25s", getPrice())).length();
+    public void displayFileFormat(){
+        System.out.println(String.format("%-25s", name) + String.format("%-25s", symbol) + String.format("%-25s", getAmount()) + String.format("%-25s", getPrice()));
     }
-    //TODO add a method to convert the information to a text file readable format
 }

@@ -18,11 +18,5 @@ public class Main {
         portfolio.writeToFile();
 
 
-
-/*
-        for (int i = 0; i < 100; i++) {
-            System.out.printf("%-15s", ("$" + list.get(i).getClose()));
-            System.out.println(list.get(i).getDate());
-        }*/
     }
 }

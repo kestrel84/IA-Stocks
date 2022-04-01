@@ -9,12 +9,12 @@ public class Portfolio {
         portfolio = new ArrayList<>();
         db = new Database(fileName, 100, "##DELETED##");
     }
-
+    //TODO: add a method that uses a text file to initialise the portfolio
 
     public void addStock(Stock stock){
         portfolio.add(stock);
     }
-    public void updateAll(){
+    public void updateAllPrices(){
         //updates all the prices of all the assets
     }
 
@@ -27,6 +27,8 @@ public class Portfolio {
         }
     }
 
-
+    public String getStockStringAt(int i){
+        return portfolio.get(i).convertToFileFormat();
+    }
 
 }

@@ -12,6 +12,8 @@ import java.util.*;
 public class AlphaVantageWrapper {
 
     public static List<StockUnit> getIntradayPrice(String symbol, Interval interval) {
+        //returns an array of stockUnits that is the data every set interval
+
         //get a response
         TimeSeriesResponse resp = AlphaVantage.api()
                 .timeSeries()
@@ -31,16 +33,16 @@ public class AlphaVantageWrapper {
                 .timeSeries()
                 .intraday()
                 .forSymbol(symbol)
-                .interval(Interval.DAILY)
+                .interval(Interval.SIXTY_MIN)
                 .outputSize(OutputSize.COMPACT)
                 .dataType(DataType.JSON)
                 .fetchSync();
 
-        if (resp.getStockUnits().size() != 0) {
+
             return resp.getStockUnits().get(0).getClose();
-        } else {
-            return 0;
-        }
+
+
+
     }
 
     public static void initialiseApi(){
