@@ -26,6 +26,23 @@ public class AlphaVantageWrapper {
         return resp.getStockUnits();
     }
 
+    public static double getClosingDailyPrice(String symbol){
+        TimeSeriesResponse resp = AlphaVantage.api()
+                .timeSeries()
+                .intraday()
+                .forSymbol(symbol)
+                .interval(Interval.DAILY)
+                .outputSize(OutputSize.COMPACT)
+                .dataType(DataType.JSON)
+                .fetchSync();
+
+        if (resp.getStockUnits().size() != 0) {
+            return resp.getStockUnits().get(0).getClose();
+        } else {
+            return 0;
+        }
+    }
+
     public static void initialiseApi(){
         //configure wrapper
         Config cfg = Config.builder()
