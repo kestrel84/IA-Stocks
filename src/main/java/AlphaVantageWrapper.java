@@ -38,11 +38,7 @@ public class AlphaVantageWrapper {
                 .dataType(DataType.JSON)
                 .fetchSync();
 
-
             return resp.getStockUnits().get(0).getClose();
-
-
-
     }
 
     public static void initialiseApi(){
