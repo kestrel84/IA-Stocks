@@ -2,14 +2,15 @@ import java.util.ArrayList;
 
 
 public class Portfolio {
+    private static final int lineLength=100;
     private ArrayList<Stock> portfolio;
     private Database db;
 
     public Portfolio(String fileName){
         portfolio = new ArrayList<>();
-        db = new Database(fileName, 100, "##DELETED##");
+        db = new Database(fileName, lineLength, "##DELETED##");
     }
-    //TODO: add a method that uses a text file to initialise the portfolio
+    //TODO: add a method that uses a text file to initialise the portfolio, requires a method in stock that initialises from a file format
 
     public void addStock(Stock stock){
         portfolio.add(stock);

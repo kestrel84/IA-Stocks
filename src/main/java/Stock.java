@@ -12,8 +12,13 @@ public class Stock extends Asset{
         this.symbol = symbol;
         this.name = name;
     }
-    //TODO urgent: make a constructor that can be passed a file format string and make a stock object out of it
+    public Stock(String fileFormat, int lineLength){
+        //constructor that takes a string in the format used for files and converts it into a stock object
+        super(Integer.parseInt(fileFormat.substring(lineLength/2, 3*(lineLength/4)).trim()), Double.parseDouble((fileFormat.substring(3*(lineLength/4), lineLength)).trim()));
+        name = fileFormat.substring(0,lineLength/4);
+        symbol = fileFormat.substring(lineLength/4, lineLength/2);
 
+    }
 
     public String getSymbol() {
         return symbol;
