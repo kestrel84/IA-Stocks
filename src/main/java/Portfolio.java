@@ -1,16 +1,15 @@
 import java.util.ArrayList;
 
-
 public class Portfolio {
     private static final int lineLength=100;
     private ArrayList<Stock> portfolio;
-    private Database db;
+    private Database db; //TODO: recode or replace outdated and clunky database class
 
     public Portfolio(String fileName){
         portfolio = new ArrayList<>();
         db = new Database(fileName, lineLength, "##DELETED##");
     }
-    //TODO: add a method that uses a text file to initialise the portfolio, requires a method in stock that initialises from a file format
+    //TODO: add a method that uses a text file to initialise the portfolio using the stock constructor that takes a file string
 
     public void addStock(Stock stock){
         portfolio.add(stock);

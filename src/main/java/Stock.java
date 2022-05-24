@@ -17,7 +17,6 @@ public class Stock extends Asset{
         super(Integer.parseInt(fileFormat.substring(lineLength/2, 3*(lineLength/4)).trim()), Double.parseDouble((fileFormat.substring(3*(lineLength/4), lineLength)).trim()));
         name = fileFormat.substring(0,lineLength/4);
         symbol = fileFormat.substring(lineLength/4, lineLength/2);
-
     }
 
     public String getSymbol() {

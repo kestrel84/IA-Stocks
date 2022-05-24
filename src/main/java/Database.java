@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 
-//TODO fix this damn thing
 public class Database {
     private final String fileName;
     private final int lineLength;
