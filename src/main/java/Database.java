@@ -23,7 +23,7 @@ public class Database {
         size = getFileSize();
     }
     public Database(String filePath, ArrayList<String> strings, int lineLength){
-        //creates a database filled with existing strings
+        //creates a database filled with existing strings (essentially useless)
 
         this.filePath = filePath;
         this.lineLength = lineLength+2;
@@ -127,7 +127,7 @@ public class Database {
 
         size--;
     }
-    private String getLineAt(int lineNumber){
+    public String getRecordAt(int lineNumber){
         //returns the String of the line at the specified lineNumber
         //linenumber starts at 0
 
@@ -153,7 +153,7 @@ public class Database {
     public String padString(String s){
         return (String.format("%-" + (lineLength-2) + "s", s) + "\r\n");
     }
-    public int getFileSize(){
+    private int getFileSize(){
         //gets the amount of lines in the file, aka size variable
         try (
                 RandomAccessFile rf = new RandomAccessFile(filePath, "rws")
@@ -164,6 +164,9 @@ public class Database {
             System.out.println("error in file access");
             return -1;
         }
+    }
+    public int getSize(){
+        return size;
     }
 
 }

@@ -1,22 +1,14 @@
-import com.crazzyghost.alphavantage.parameters.*;
-import com.crazzyghost.alphavantage.timeseries.response.StockUnit;
-
-import java.util.List;
-
 public class Main {
 
     public static void main(String[] args) {
-        AlphaVantageWrapper.initialiseApi();
-        List<StockUnit> list = AlphaVantageWrapper.getIntradayPrice("IBM", Interval.SIXTY_MIN);
+        //TODO: UI!!!!!!!!!!!!!!!
+        //TODO: frame holder Jframe
+        //TODO: main menu panel
+        //TODO: all the other panels
 
-        Stock stock = new Stock(10, list.get(0).getClose(), "IBM", "IBM");
+        AlphaVantageWrapper.initialiseApi();
 
         Portfolio portfolio = new Portfolio("\\\\bex-file-01\\studenthome$\\16\\16Ashton_M\\CSH IB\\IA-Stonks\\Portfolio1.txt");
-
-        portfolio.addStock(stock);
-        portfolio.addStock(new Stock(10, "BCS", "Barclays"));
-        portfolio.writeToFile();
-
-
+        System.out.println(portfolio.getStockStringAt(1));
     }
 }
