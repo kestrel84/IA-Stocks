@@ -1,105 +1,169 @@
+import java.io.*;
 import java.util.ArrayList;
+//splitting lines into more than one record to be handled externally
+
+//anything that returns a string returns "" (empty string) if it encounters an error
+//anything that returns an int returns -1 as an error
+
 
 public class Database {
-    private final String fileName;
-    private final int lineLength;
-    private int recordCount;
-    private ArrayList<Integer> deletedRecords; //this holds a list of the row number of each line that has been deleted.
-    private final String deleteFlag;
+    private final String filePath; //path of the text file linked to this database
+    private final int lineLength;  //length of each line of the text file
+    private int size;              //number of lines in the database
 
+    //CONSTRUCTORS
+    //------------
+    public Database(String filePath, int lineLength) {
+        //creates an empty database
 
-    public Database(String fileName, int lineLength, String deleteFlag) {
-        this.fileName = fileName;
-        this.lineLength = lineLength;
-        recordCount = (int) (FileHandler.randomGetLength(fileName) / lineLength);
-        deletedRecords = new ArrayList<>();
-        this.deleteFlag = deleteFlag;
+        this.filePath = filePath;
+        this.lineLength = lineLength + 2;
 
+        //get the actual amount of lines in the file
+        size = getFileSize();
     }
+    public Database(String filePath, ArrayList<String> strings, int lineLength){
+        //creates a database filled with existing strings
 
-    public void appendRecord(String data) {
-        //adds on one record to the end of the file/database
+        this.filePath = filePath;
+        this.lineLength = lineLength+2;
 
-        if (data.length() <= lineLength){
-            FileHandler.randomWriteString(fileName, (lineLength+2)*recordCount, (String.format("%-" + lineLength + "s", data) + "\r\n"));
-            recordCount++;
-        } else {
-            System.out.println("error: message too long for the database");
-        }
-    }
-
-    public void deleteRecord(int rowNumber) {
-        //this overwrites the last char in a line with a logical delete flag, in this case '<//DEL>'. other methods then acknowledge this flag.
-        FileHandler.randomWriteString(fileName, ((rowNumber+1)*(lineLength+2))-(2+deleteFlag.length()), deleteFlag);
-        recordCount--;
-    }
-
-    //this doesn't work properly because null values, carriage return newlines, delete flags,
-    //and not being able to delete stuff properly in rfa.
-    //accounting for all of this stuff is very messy, and I need to start again.
-    //change this to a specific error value?
-    public String getRecord(int rowNumber) {
-        //returns a record at a specific line number
-        if (rowNumber > recordCount){
-            System.out.println("error: row number too large");
-            return null;
-        }
-
-        String record = FileHandler.randomReadLine(fileName, rowNumber * (lineLength+2));
-
-        //checks if the row number has been deleted
-        if (isDeleted(rowNumber)){
-            System.out.println("error: record has been deleted");
-            return null;
-        }
-
-
-        if (record == null){
-            System.out.println("error: record contains null value");
-            return null;
-        }
-
-        return record;
-    }
-
-    public int getRecordCount() {
-        return recordCount;
-    }
-
-    //fix this - broken since getRecord can return null value for deleted records
-    public boolean recordExists(String data) {
-        //if a given string matches a record in the file, it returns true, else false
-/*
-       int rowCounter = 0;
-
-       String record = getRecord(rowCounter);
-       while (record != null) {
-           if (record.trim().equals(data)){
-               return true;
-           }
-           rowCounter++;
-           record = getRecord(rowCounter);
-       }
-
-*/
-
-        String record;
-        for (int i = 0; i < recordCount; i++) {
-            record = getRecord(i);
-            if (record.equals("")){
-                return false;
+        boolean tooLong = false;
+        for (String s :
+                strings) {
+            if (s.length() > lineLength) {
+                System.out.println("error: a string is too long");
+                tooLong = true;
             }
         }
-        return true;
+
+        if (!tooLong){
+            for (String s :
+                    strings) {
+                appendRecord(s);
+            }
+        }
+
+        size = strings.size();
     }
 
-    public boolean isDeleted(int rowNumber){
-        //checks if a given rowNumber has been deleted
-        return FileHandler.randomReadString(fileName, ((rowNumber + 1) * (lineLength + 2)) - (2+ deleteFlag.length()), deleteFlag.length()).equals(deleteFlag);
+    //IMPORTANT STUFF
+    public void appendRecord(String string){
+        //pads a string and appends it to the end of the text file
+
+        if (string.length() > lineLength-2){
+            System.out.println("error - string too long to add");
+        } else {
+            try (
+                    RandomAccessFile rf = new RandomAccessFile(filePath, "rws")
+            ){
+                //seek to the end of the file and write the string
+                rf.seek((long) lineLength*size);
+                for (char c:
+                        padString(string).toCharArray()) {
+                    rf.write((byte)c);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("error in file access");
+            }
+        }
+
+        size++;
     }
+    public void setRecordAt(int lineNumber, String string){
+        //pads a string and replaces a record at a line number with it
+
+        if (string.length() > lineLength-2){
+            System.out.println("error - string too long to add");
+        } else {
+            try (
+                    RandomAccessFile rf = new RandomAccessFile(filePath, "rws")
+            ){
+                //seek to the end of the file and write the string
+                rf.seek((long) lineLength*lineNumber);
+                for (char c:
+                        padString(string).toCharArray()) {
+                    rf.write((byte)c);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("error in file access");
+            }
+        }
+
+        size++;
+    }
+    public void deleteRecord(int lineNumber){
+        try (
+                RandomAccessFile rf = new RandomAccessFile(filePath, "rws")
+        ){
+            //move every record below the line up
+            for (int i = lineNumber; i < size-1; i++) {
+                rf.seek((long) (i+1)*lineLength);
+                String toBeMovedUp = rf.readLine();
+
+                rf.seek((long) i*lineLength);
+                for (char c:
+                        (toBeMovedUp + "\r\n").toCharArray()) {
+                    rf.write((byte)c);
+                }
+            }
+
+            //replace the last line with empty characters
+            rf.seek((long) (size-1)*lineLength);
+            for (char c:
+                    ("                    \r\n").toCharArray()) {
+                rf.write((byte)c);
+            }
+
+            //shorten the file
+            rf.setLength(rf.length()-lineLength);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("error in file access");
+        }
+
+        size--;
+    }
+    private String getLineAt(int lineNumber){
+        //returns the String of the line at the specified lineNumber
+        //linenumber starts at 0
+
+        if (lineNumber <= size) {
+            try (
+                    RandomAccessFile rf = new RandomAccessFile(filePath, "rws")
+            ) {
+                //seek to the beginning of the line and return the line
+                rf.seek((long) lineNumber*lineLength);
+                return rf.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("error in file access");
+                return "";
+            }
+        } else {
+            System.out.println("error - lineNumber too large");
+            return "";
+        }
+    }
+
+    //AUXILIARY METHODS
+    public String padString(String s){
+        return (String.format("%-" + (lineLength-2) + "s", s) + "\r\n");
+    }
+    public int getFileSize(){
+        //gets the amount of lines in the file, aka size variable
+        try (
+                RandomAccessFile rf = new RandomAccessFile(filePath, "rws")
+        ){
+            return (int)rf.length() / lineLength;
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("error in file access");
+            return -1;
+        }
+    }
+
 }
-
-
-
-
-

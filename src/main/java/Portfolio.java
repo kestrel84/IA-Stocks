@@ -7,7 +7,7 @@ public class Portfolio {
 
     public Portfolio(String fileName){
         portfolio = new ArrayList<>();
-        db = new Database(fileName, lineLength, "##DELETED##");
+        db = new Database(fileName, lineLength);
     }
     //TODO: add a method that uses a text file to initialise the portfolio using the stock constructor that takes a file string
 
