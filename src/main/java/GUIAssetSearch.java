@@ -1,2 +1,4 @@
-public class GUIAssetSearch {
+import javax.swing.*;
+
+public class GUIAssetSearch  extends JPanel {
 }

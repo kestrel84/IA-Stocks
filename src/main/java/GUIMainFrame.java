@@ -6,15 +6,17 @@ public class GUIMainFrame extends JFrame {
     private static final int WINDOW_WIDTH = 1000;  //TODO: CONFIG FILE?????????!?!?!?!??
     private static final int WINDOW_HEIGHT = 700;
 
+
+    private JPanel[] panels;
+
     //PANEL-RELATED MAGIC NUMBERS
     //---------------------------
-    private JPanel[] panels;
-    private static final int MAIN_MENU = 0;
-    private static final int LOGIN_SCREEN = 1;
-    private static final int CREATE_USER = 2;
-    private static final int PORTFOLIO_VIEW = 3;
-    private static final int ASSET_VIEW = 4;
-    private static final int ASSET_SEARCH = 5;
+    public static final int MAIN_MENU = 0;
+    public static final int LOGIN_SCREEN = 1;
+    public static final int CREATE_USER = 2;
+    public static final int PORTFOLIO_VIEW = 3;
+    public static final int ASSET_VIEW = 4;
+    public static final int ASSET_SEARCH = 5;
 
     public GUIMainFrame(){
         //set up the frame
@@ -26,8 +28,14 @@ public class GUIMainFrame extends JFrame {
 
 
         panels = new JPanel[6];
+        //TODO: initialise and add all the panels
 
-        //
     }
+
+    public void navigate(int goTo, JPanel comingFrom){
+        comingFrom.setVisible(false);
+        panels[goTo].setVisible(true);
+    }
+
 
 }

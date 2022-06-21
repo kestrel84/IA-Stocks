@@ -1,2 +1,4 @@
-public class GUIPortfolioView {
+import javax.swing.*;
+
+public class GUIPortfolioView  extends JPanel {
 }
