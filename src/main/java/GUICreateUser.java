@@ -23,22 +23,28 @@ public class GUICreateUser  extends JPanel implements ActionListener {
         width=getWidth();
         height=getHeight();
 
-        //set up components
+        //COMPONENT SET UP
+        //----------------
+
+        //LABELS
+        //------
         title = new JLabel("CREATE USER");
-        title.setBounds(0,0,width,height/4);
-        title.setFont(new Font("Sans Serif", Font.PLAIN, 100));
+        title.setBounds(0,0,width,height/10);
+        title.setFont(new Font("Sans Serif", Font.PLAIN, 90));
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setVerticalAlignment(SwingConstants.CENTER);
         this.add(title);
 
+        //BUTTONS
+        //-------
         toMainMenu = new JButton("Main Menu");
-        toMainMenu.setBounds(0, height/2, width, height/2);
+        toMainMenu.setBounds(0, height/2, width/2, height/2);
         toMainMenu.addActionListener(this);
         toMainMenu.setActionCommand("mainMenu");
         this.add(toMainMenu);
 
         back = new JButton("Back to login");
-        back.setBounds(0, height/2, width, height/2);
+        back.setBounds(width/2, height/2, width/2, height/2);
         back.addActionListener(this);
         back.setActionCommand("loginScreen");
         this.add(back);

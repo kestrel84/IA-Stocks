@@ -8,7 +8,10 @@ public class Main {
 
         AlphaVantageWrapper.initialiseApi();
 
-        Portfolio portfolio = new Portfolio("\\\\bex-file-01\\studenthome$\\16\\16Ashton_M\\CSH IB\\IA-Stonks\\Portfolio1.txt");
-        System.out.println(portfolio.getStockStringAt(1));
+        //Portfolio portfolio = new Portfolio("\\\\bex-file-01\\studenthome$\\16\\16Ashton_M\\CSH IB\\IA-Stonks\\Portfolio1.txt");
+        //System.out.println(portfolio.getStockStringAt(1));
+
+        GUIMainFrame m = new GUIMainFrame();
+        m.setVisible(true);
     }
 }

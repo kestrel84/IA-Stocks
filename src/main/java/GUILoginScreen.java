@@ -9,36 +9,57 @@ public class GUILoginScreen  extends JPanel implements ActionListener {
 
     //COMPONENTS
     //----------
-    JButton toMainMenu;
+    JButton checkLoginDetails;
     JButton toCreateUser;
     JLabel title;
+    JTextField enterUname;
+    JPasswordField enterPassword;
+
 
 
     public GUILoginScreen(GUIMainFrame mainFrame){
         this.mainFrame = mainFrame; //set parent frame holder
 
         //set up panel
-        setBounds(mainFrame.getBounds());
-        setLayout(null);
+        //setBounds(mainFrame.getBounds());
+        setSize(new Dimension(mainFrame.getWidth(), mainFrame.getHeight()-50));
+        setLayout(new GridLayout(0,1));
         width=getWidth();
         height=getHeight();
 
-        //set up components
+        //COMPONENT SET UP
+        //----------------
+
+        //TITLE
+        //-----
         title = new JLabel("LOGIN SCREEN");
-        title.setBounds(0,0,width,height/4);
-        title.setFont(new Font("Sans Serif", Font.PLAIN, 100));
+        title.setBounds(0,0,width,height/10);
+        title.setFont(new Font("Sans Serif", Font.PLAIN, 30));
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setVerticalAlignment(SwingConstants.CENTER);
         this.add(title);
 
-        toMainMenu = new JButton("Main Menu");
-        toMainMenu.setBounds(0, height/2, width, height/2);
-        toMainMenu.addActionListener(this);
-        toMainMenu.setActionCommand("mainMenu");
-        this.add(toMainMenu);
+        //JTEXTFIELD
+        //---------
+        enterUname = new JTextField();
+        this.add(enterUname);
+
+        //JPASSWORDFIELD
+        //--------------
+        enterPassword = new JPasswordField();
+        this.add(enterPassword);
+
+
+        //BUTTONS
+        //-------
+        checkLoginDetails = new JButton("Login");
+        checkLoginDetails.setBounds(0, height/2, width/2, height/2);
+        checkLoginDetails.addActionListener(this);
+        checkLoginDetails.setActionCommand("mainMenu");
+        this.add(checkLoginDetails);
 
         toCreateUser = new JButton("Create New User");
-        toCreateUser.setBounds(0, height/2, width, height/2);
+        toCreateUser.setBounds(width/2, height/2, width/2, height/2);
         toCreateUser.addActionListener(this);
         toCreateUser.setActionCommand("createUser");
         this.add(toCreateUser);
@@ -46,13 +67,9 @@ public class GUILoginScreen  extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        switch (e.getActionCommand()){
-            case "mainMenu":
-                mainFrame.navigate(GUIMainFrame.MAIN_MENU, this);
-                break;
-            case "createUser":
-                mainFrame.navigate(GUIMainFrame.CREATE_USER, this);
-                break;
+        switch (e.getActionCommand()) {
+            case "mainMenu" -> mainFrame.navigate(GUIMainFrame.MAIN_MENU, this);
+            case "createUser" -> mainFrame.navigate(GUIMainFrame.CREATE_USER, this);
         }
     }
 }
