@@ -16,6 +16,11 @@ public class GUILoginScreen  extends JPanel implements ActionListener {
     JPasswordField enterPassword;
 
 
+    //TODO: implement a proper login system
+    String uname = "max";
+    String pword = "42069";
+
+
 
     public GUILoginScreen(GUIMainFrame mainFrame){
         this.mainFrame = mainFrame; //set parent frame holder
@@ -33,7 +38,7 @@ public class GUILoginScreen  extends JPanel implements ActionListener {
         //TITLE
         //-----
         title = new JLabel("LOGIN SCREEN");
-        title.setBounds(0,0,width,height/10);
+        //title.setBounds(0,0,width,height/10);
         title.setFont(new Font("Sans Serif", Font.PLAIN, 30));
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setVerticalAlignment(SwingConstants.CENTER);
@@ -53,13 +58,13 @@ public class GUILoginScreen  extends JPanel implements ActionListener {
         //BUTTONS
         //-------
         checkLoginDetails = new JButton("Login");
-        checkLoginDetails.setBounds(0, height/2, width/2, height/2);
+        //checkLoginDetails.setBounds(0, height/2, width/2, height/2);
         checkLoginDetails.addActionListener(this);
         checkLoginDetails.setActionCommand("mainMenu");
         this.add(checkLoginDetails);
 
         toCreateUser = new JButton("Create New User");
-        toCreateUser.setBounds(width/2, height/2, width/2, height/2);
+        //toCreateUser.setBounds(width/2, height/2, width/2, height/2);
         toCreateUser.addActionListener(this);
         toCreateUser.setActionCommand("createUser");
         this.add(toCreateUser);
@@ -68,7 +73,11 @@ public class GUILoginScreen  extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
-            case "mainMenu" -> mainFrame.navigate(GUIMainFrame.MAIN_MENU, this);
+            case "mainMenu" -> {
+                if (enterUname.getText().equals(uname) && enterPassword.getText().equals(pword)){
+                    mainFrame.navigate(GUIMainFrame.MAIN_MENU, this);
+                }
+            }
             case "createUser" -> mainFrame.navigate(GUIMainFrame.CREATE_USER, this);
         }
     }

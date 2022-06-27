@@ -1,7 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class GUIMainMenu  extends JPanel {
+public class GUIMainMenu  extends JPanel implements ActionListener {
     private GUIMainFrame mainFrame;    //parent frame holder
     private final int width, height;   //width and height of the panel for easy access
 
@@ -15,8 +17,9 @@ public class GUIMainMenu  extends JPanel {
         this.mainFrame = mainFrame; //set parent frame holder
 
         //set up panel
-        setBounds(mainFrame.getBounds());
-        setLayout(null);
+        //setBounds(mainFrame.getBounds());
+        setSize(new Dimension(mainFrame.getWidth(), mainFrame.getHeight()-50));
+        setLayout(new GridLayout(0,1));
         width=getWidth();
         height=getHeight();
 
@@ -26,8 +29,8 @@ public class GUIMainMenu  extends JPanel {
         //LABELS
         //------
         title = new JLabel("MAIN MENU");
-        title.setBounds(0,0,width,height/10);
-        title.setFont(new Font("Sans Serif", Font.PLAIN, 90));
+        //title.setBounds(0,0,width,height/10);
+        title.setFont(new Font("Sans Serif", Font.PLAIN, 30));
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setVerticalAlignment(SwingConstants.CENTER);
         this.add(title);
@@ -35,5 +38,18 @@ public class GUIMainMenu  extends JPanel {
 
         //BUTTONS
         //-------
+        toAssetSearch = new JButton("To Asset Search");
+        toAssetSearch.addActionListener(this);
+        toAssetSearch.setActionCommand("assetSearch");
+        this.add(toAssetSearch);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        switch (e.getActionCommand()){
+            case "assetSearch" -> {
+
+            }
+        }
     }
 }
