@@ -11,6 +11,7 @@ public class GUIMainMenu  extends JPanel implements ActionListener {
     //----------
     private JLabel title;
     private JButton toAssetSearch;
+    private JButton newPortfolio;
     private JButton Portfolio1;
 
     public GUIMainMenu(GUIMainFrame mainFrame){
@@ -19,7 +20,7 @@ public class GUIMainMenu  extends JPanel implements ActionListener {
         //set up panel
         //setBounds(mainFrame.getBounds());
         setSize(new Dimension(mainFrame.getWidth(), mainFrame.getHeight()-GUIMainFrame.PANEL_OFFSET));
-        setLayout(new GridLayout(0,1));
+        setLayout(new GridBagLayout());
         width=getWidth();
         height=getHeight();
 
@@ -33,7 +34,14 @@ public class GUIMainMenu  extends JPanel implements ActionListener {
         title.setFont(new Font("Sans Serif", Font.PLAIN, 30));
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setVerticalAlignment(SwingConstants.CENTER);
-        this.add(title);
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.BOTH;
+        c.gridwidth = 2;
+        c.gridx = 0;
+        c.gridy = 0;
+        c.weightx = 0.5;
+        c.weighty = 0.5;
+        this.add(title, c);
 
 
         //BUTTONS
@@ -41,7 +49,28 @@ public class GUIMainMenu  extends JPanel implements ActionListener {
         toAssetSearch = new JButton("To Asset Search");
         toAssetSearch.addActionListener(this);
         toAssetSearch.setActionCommand("assetSearch");
-        this.add(toAssetSearch);
+        c = new GridBagConstraints();
+        c.fill = GridBagConstraints.BOTH;
+        c.gridx = 0;
+        c.gridy = 1;
+        c.weightx = 0.5;
+        c.weighty = 0.5;
+        this.add(toAssetSearch, c);
+
+
+        newPortfolio = new JButton("New Portfolio");
+        newPortfolio.addActionListener(this);
+        newPortfolio.setActionCommand("assetSearch");
+        c = new GridBagConstraints();
+        c.fill = GridBagConstraints.BOTH;
+        c.gridx = 1;
+        c.gridy = 1;
+        c.weightx = 0.5;
+        c.weighty = 0.5;
+        this.add(newPortfolio, c);
+
+        //
+
     }
 
     @Override
