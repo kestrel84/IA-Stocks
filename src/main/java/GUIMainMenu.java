@@ -18,7 +18,7 @@ public class GUIMainMenu  extends JPanel implements ActionListener {
 
         //set up panel
         //setBounds(mainFrame.getBounds());
-        setSize(new Dimension(mainFrame.getWidth(), mainFrame.getHeight()-50));
+        setSize(new Dimension(mainFrame.getWidth(), mainFrame.getHeight()-GUIMainFrame.PANEL_OFFSET));
         setLayout(new GridLayout(0,1));
         width=getWidth();
         height=getHeight();

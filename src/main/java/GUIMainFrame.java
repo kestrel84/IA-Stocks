@@ -7,7 +7,7 @@ public class GUIMainFrame extends JFrame {
     //------------
     private static final int WINDOW_WIDTH = 500;  //TODO: CONFIG FILE?????????!?!?!?!??
     private static final int WINDOW_HEIGHT = 300;
-
+    public static final int PANEL_OFFSET = 39;
 
     private JPanel[] panels;
 
@@ -28,6 +28,7 @@ public class GUIMainFrame extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
+        setTitle("Stonk Tracker");
 
         //TODO: initialise and add ALL panels
         panels = new JPanel[6];
