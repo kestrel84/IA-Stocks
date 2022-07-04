@@ -20,7 +20,21 @@ public class GUIMainFrame extends JFrame {
     public static final int ASSET_VIEW = 4;
     public static final int ASSET_SEARCH = 5;
 
-    public GUIMainFrame(){
+    //USER CURRENTLY USING THE PROGRAM
+    //--------------------------------
+    public static User user;
+
+    //GENERAL FILE PATH
+    //-----------------
+    public static String generalFilePath;
+
+
+
+    public GUIMainFrame(String filePath){
+        //set the static file path
+        generalFilePath = filePath;
+
+
         //set up the frame
         setLayout(null);
         //setBounds(0,0,WINDOW_WIDTH, WINDOW_HEIGHT);

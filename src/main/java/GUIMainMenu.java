@@ -12,7 +12,8 @@ public class GUIMainMenu  extends JPanel implements ActionListener {
     private JLabel title;
     private JButton toAssetSearch;
     private JButton newPortfolio;
-    private JButton Portfolio1;
+    private JButton toPortfolio;
+    private JComboBox<Portfolio> selectPortfolio;
 
     public GUIMainMenu(GUIMainFrame mainFrame){
         this.mainFrame = mainFrame; //set parent frame holder
@@ -69,7 +70,13 @@ public class GUIMainMenu  extends JPanel implements ActionListener {
         c.weighty = 0.5;
         this.add(newPortfolio, c);
 
-        //
+        //PORTFOLIO SELECTOR
+        //-------------------
+        //TODO: when this is properly implemented, use user.getportfolios
+        selectPortfolio = new JComboBox<>();
+
+
+
 
     }
 

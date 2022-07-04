@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class GUILoginScreen  extends JPanel implements ActionListener {
     private GUIMainFrame mainFrame;    //parent frame holder
@@ -74,6 +75,8 @@ public class GUILoginScreen  extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
             case "mainMenu" -> {
+                ArrayList<User> users = User.getAllUsersFromFile();
+
                 if (enterUname.getText().equals(uname) && enterPassword.getText().equals(pword)){
                     mainFrame.navigate(GUIMainFrame.MAIN_MENU, this);
                 }
