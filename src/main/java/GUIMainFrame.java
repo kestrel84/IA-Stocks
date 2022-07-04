@@ -5,7 +5,7 @@ import java.security.DigestException;
 public class GUIMainFrame extends JFrame {
     //MAGIC NUMBERS
     //------------
-    private static final int WINDOW_WIDTH = 500;  //TODO: CONFIG FILE?????????!?!?!?!??
+    private static final int WINDOW_WIDTH = 500;
     private static final int WINDOW_HEIGHT = 300;
     public static final int PANEL_OFFSET = 39;
 
@@ -22,7 +22,7 @@ public class GUIMainFrame extends JFrame {
 
     //USER CURRENTLY USING THE PROGRAM
     //--------------------------------
-    public static User user;
+    public static User currentUser;
 
     //GENERAL FILE PATH
     //-----------------

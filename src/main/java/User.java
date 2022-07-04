@@ -2,7 +2,6 @@ import javax.sound.sampled.Port;
 import java.util.ArrayList;
 
 public class User {
-    private static int maxUserID = 0;
     private final int userID; //unique user ID for each user
     private ArrayList<Portfolio> portfolios;
     private String username;
@@ -15,12 +14,14 @@ public class User {
 
 
     //this may be useless
-    public User(String username, String password, int maxPortfolios){
+    public User(String username, String password){
         this.username = username;
         this.password = password;
-        userID = maxUserID;
-        maxUserID++;
-        portfolios = new ArrayList<Portfolio>();
+        numberOfPortfolios = 0;
+        portfolios = new ArrayList<>();        //TODO: POPULATE THIS ARRAY WITH ALL OF THE USER'S PORTFOLIO TEXT FILES
+        Database userDatabase = new Database(usersFilePath, FILE_FORMAT_LENGTH);
+        userID = userDatabase.getSize();
+        userDatabase.appendRecord(this.userToFileFormat());
     }
 
     public static ArrayList<User> getAllUsersFromFile(){
@@ -38,6 +39,8 @@ public class User {
         username = fileFormat.substring(FILE_FORMAT_LENGTH/4, (FILE_FORMAT_LENGTH/2)).trim();
         password = fileFormat.substring((FILE_FORMAT_LENGTH/2), 3*(FILE_FORMAT_LENGTH/4)).trim();
         numberOfPortfolios = Integer.parseInt(fileFormat.substring(3*(FILE_FORMAT_LENGTH/4), FILE_FORMAT_LENGTH).trim());
+
+        portfolios = new ArrayList<>();        //TODO: POPULATE THIS ARRAY WITH ALL OF THE USER'S PORTFOLIO TEXT FILES
     }
 
     public String userToFileFormat(){
@@ -54,9 +57,19 @@ public class User {
     }
 
     public ArrayList<Portfolio> getAllPortfolios(){
-
+        //TODO: implement get all portfolios for a specific user
+        return null;
     }
 
+
+
+    public String getUsername(){
+        return username;
+    }
+
+    public String getPassword(){
+        return password;
+    }
 
 
 }

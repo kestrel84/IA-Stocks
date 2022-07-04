@@ -167,6 +167,6 @@ public class Database {
     }
     public int getSize(){
         return size;
-    }
+    }// -- DOES NOT START FROM ZERO - A DATABASE WITH 4 RECORDS WILL RETURN 4
 
 }

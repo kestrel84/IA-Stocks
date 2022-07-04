@@ -17,11 +17,6 @@ public class GUILoginScreen  extends JPanel implements ActionListener {
     JPasswordField enterPassword;
 
 
-    //TODO: implement a proper login system
-    String uname = "max";
-    String pword = "42069";
-
-
 
     public GUILoginScreen(GUIMainFrame mainFrame){
         this.mainFrame = mainFrame; //set parent frame holder
@@ -76,10 +71,15 @@ public class GUILoginScreen  extends JPanel implements ActionListener {
         switch (e.getActionCommand()) {
             case "mainMenu" -> {
                 ArrayList<User> users = User.getAllUsersFromFile();
-
-                if (enterUname.getText().equals(uname) && enterPassword.getText().equals(pword)){
-                    mainFrame.navigate(GUIMainFrame.MAIN_MENU, this);
+                for (User u :
+                        users) {
+                    if (enterUname.getText().equals(u.getUsername()) && enterPassword.getText().equals(u.getPassword())){
+                        GUIMainFrame.currentUser = u;
+                        mainFrame.navigate(GUIMainFrame.MAIN_MENU, this);
+                        break;
+                    }
                 }
+
             }
             case "createUser" -> mainFrame.navigate(GUIMainFrame.CREATE_USER, this);
         }

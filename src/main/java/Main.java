@@ -1,7 +1,6 @@
 public class Main {
 
     public static void main(String[] args) {
-        //TODO: UI!!!!!!!!!!!!
         //TODO: all the other panels
 
 
