@@ -61,7 +61,7 @@ public class GUIMainMenu  extends JPanel implements ActionListener {
 
         newPortfolio = new JButton("New Portfolio");
         newPortfolio.addActionListener(this);
-        newPortfolio.setActionCommand("assetSearch");
+        newPortfolio.setActionCommand("newPortfolio");
         c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 1;
@@ -86,6 +86,10 @@ public class GUIMainMenu  extends JPanel implements ActionListener {
             case "assetSearch" -> {
 
             }
+            case "newPortfolio" -> {
+
+            }
+
         }
     }
 }

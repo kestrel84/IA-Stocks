@@ -72,6 +72,7 @@ public class Database {
         size++;
     }
     public void setRecordAt(int lineNumber, String string){
+        //ZERO INDEXED - FIRST LINE IS AT ZERO, SECOND AT 1, ETC
         //pads a string and replaces a record at a line number with it
 
         if (string.length() > lineLength-2){

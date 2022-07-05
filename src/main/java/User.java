@@ -1,4 +1,3 @@
-import javax.sound.sampled.Port;
 import java.util.ArrayList;
 
 public class User {
@@ -9,23 +8,32 @@ public class User {
     private int numberOfPortfolios;
 
     //CONSTANTS
-    private static final int FILE_FORMAT_LENGTH = 100;
+    private static final int USER_FILE_FORMAT_LENGTH = 100;
     private static final String usersFilePath = GUIMainFrame.generalFilePath + "users.txt";
 
-
-    //this may be useless
+    //CONSTRUCTORS
     public User(String username, String password){
         this.username = username;
         this.password = password;
         numberOfPortfolios = 0;
-        portfolios = new ArrayList<>();        //TODO: POPULATE THIS ARRAY WITH ALL OF THE USER'S PORTFOLIO TEXT FILES
-        Database userDatabase = new Database(usersFilePath, FILE_FORMAT_LENGTH);
+        Database userDatabase = new Database(usersFilePath, USER_FILE_FORMAT_LENGTH);
         userID = userDatabase.getSize();
-        userDatabase.appendRecord(this.userToFileFormat());
+        userDatabase.appendRecord(this.toFileFormat());
+        portfolios = getAllPortfolios();
+
+    }
+    public User(String fileFormat){
+        userID = Integer.parseInt(fileFormat.substring(0, (USER_FILE_FORMAT_LENGTH /4)).trim());
+        username = fileFormat.substring(USER_FILE_FORMAT_LENGTH /4, (USER_FILE_FORMAT_LENGTH /2)).trim();
+        password = fileFormat.substring((USER_FILE_FORMAT_LENGTH /2), 3*(USER_FILE_FORMAT_LENGTH /4)).trim();
+        numberOfPortfolios = Integer.parseInt(fileFormat.substring(3*(USER_FILE_FORMAT_LENGTH /4), USER_FILE_FORMAT_LENGTH).trim());
+
+        portfolios = getAllPortfolios();
     }
 
+    //STATIC METHODS
     public static ArrayList<User> getAllUsersFromFile(){
-        Database userDatabase = new Database(usersFilePath, FILE_FORMAT_LENGTH);
+        Database userDatabase = new Database(usersFilePath, USER_FILE_FORMAT_LENGTH);
         ArrayList<User> users = new ArrayList<>();
 
         for (int i = 0; i < userDatabase.getSize(); i++) {
@@ -34,42 +42,41 @@ public class User {
         return users;
     }
 
-    public User(String fileFormat){
-        userID = Integer.parseInt(fileFormat.substring(0, (FILE_FORMAT_LENGTH/4)).trim());
-        username = fileFormat.substring(FILE_FORMAT_LENGTH/4, (FILE_FORMAT_LENGTH/2)).trim();
-        password = fileFormat.substring((FILE_FORMAT_LENGTH/2), 3*(FILE_FORMAT_LENGTH/4)).trim();
-        numberOfPortfolios = Integer.parseInt(fileFormat.substring(3*(FILE_FORMAT_LENGTH/4), FILE_FORMAT_LENGTH).trim());
 
-        portfolios = new ArrayList<>();        //TODO: POPULATE THIS ARRAY WITH ALL OF THE USER'S PORTFOLIO TEXT FILES
-    }
-
-    public String userToFileFormat(){
-        return (String.format("%-25s", userID) + String.format("%-25s", username) + String.format("%-25s", password) + String.format("%-25s", numberOfPortfolios));
-    }
-
+    //OBJECT METHODS
     public void addNewPortfolio(){
-        //TODO: Create a new portfolio
+        //creates a new portfolio
+
+        portfolios.add(new Portfolio(GUIMainFrame.generalFilePath + userID + "Portfolio" + numberOfPortfolios));
+        numberOfPortfolios++;
+
+        Database userDatabase = new Database(usersFilePath, USER_FILE_FORMAT_LENGTH);
+        userDatabase.setRecordAt(userID, toFileFormat());
+
 
 
         //how portfolio files are going to work - [userid]Portfolio[number]
         //userid is userid
         //portfolio number is for how many portfolios the user has (e.g. portfolio1 (or zero, undecided yet) is the first, portfolio2 is the second)
     }
-
     public ArrayList<Portfolio> getAllPortfolios(){
-        //TODO: implement get all portfolios for a specific user
-        return null;
+        //gets all the portfolios for a specific userID
+
+        //TODO: TEST THIS
+        ArrayList<Portfolio> portfolios = new ArrayList<>();
+        for (int i = 0; i < numberOfPortfolios; i++) {
+            portfolios.add(new Portfolio(GUIMainFrame.generalFilePath + userID + "Portfolio" + i));
+        }
+        return portfolios;
     }
-
-
 
     public String getUsername(){
         return username;
     }
-
     public String getPassword(){
         return password;
     }
-
-
+    public String toFileFormat(){
+        return (String.format("%-25s", userID) + String.format("%-25s", username) + String.format("%-25s", password) + String.format("%-25s", numberOfPortfolios));
+    }
 }

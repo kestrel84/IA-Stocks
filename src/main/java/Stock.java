@@ -2,6 +2,9 @@ public class Stock extends Asset{
     private String symbol;
     private String name;
 
+    //CONSTANTS
+    private static final int STOCK_FILE_FORMAT_LENGTH = 100;
+
     public Stock(int amount, double price, String symbol, String name) {
         super(amount, price);
         this.symbol = symbol;
@@ -12,11 +15,11 @@ public class Stock extends Asset{
         this.symbol = symbol;
         this.name = name;
     }
-    public Stock(String fileFormat, int lineLength){
+    public Stock(String fileFormat){
         //constructor that takes a string in the format used for files and converts it into a stock object
-        super(Integer.parseInt(fileFormat.substring(lineLength/2, 3*(lineLength/4)).trim()), Double.parseDouble((fileFormat.substring(3*(lineLength/4), lineLength)).trim()));
-        name = fileFormat.substring(0,lineLength/4);
-        symbol = fileFormat.substring(lineLength/4, lineLength/2);
+        super(Integer.parseInt(fileFormat.substring(STOCK_FILE_FORMAT_LENGTH /2, 3*(STOCK_FILE_FORMAT_LENGTH /4)).trim()), Double.parseDouble((fileFormat.substring(3*(STOCK_FILE_FORMAT_LENGTH /4), STOCK_FILE_FORMAT_LENGTH)).trim()));
+        name = fileFormat.substring(0, STOCK_FILE_FORMAT_LENGTH /4);
+        symbol = fileFormat.substring(STOCK_FILE_FORMAT_LENGTH /4, STOCK_FILE_FORMAT_LENGTH /2);
     }
 
     public String getSymbol() {
