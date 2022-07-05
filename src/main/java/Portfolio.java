@@ -38,4 +38,9 @@ public class Portfolio {
         return portfolio.get(i).convertToFileFormat();
     }
 
+    public String getName() {
+        return name;
+    }
+
+
 }

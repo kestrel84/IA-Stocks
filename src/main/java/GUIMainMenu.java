@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class GUIMainMenu  extends JPanel implements ActionListener {
     private GUIMainFrame mainFrame;    //parent frame holder
@@ -12,8 +13,8 @@ public class GUIMainMenu  extends JPanel implements ActionListener {
     private JLabel title;
     private JButton toAssetSearch;
     private JButton newPortfolio;
-    private JButton toPortfolio;
-    private JComboBox<Portfolio> selectPortfolio;
+    private JButton toSelectedPortfolio;
+    private JComboBox<String> portfolioSelector;
 
     public GUIMainMenu(GUIMainFrame mainFrame){
         this.mainFrame = mainFrame; //set parent frame holder
@@ -72,24 +73,75 @@ public class GUIMainMenu  extends JPanel implements ActionListener {
 
         //PORTFOLIO SELECTOR
         //-------------------
-        //TODO: when this is properly implemented, use user.getportfolios
-        selectPortfolio = new JComboBox<>();
+
+        /*
+        ArrayList<Portfolio> portfolios = GUIMainFrame.currentUser.getAllPortfolios(); //get portfolios
+        String[] portfolioNames = new String[portfolios.size()]; //convert portfolios into names
+        for (int i = 0; i < portfolioNames.length; i++) {
+            portfolioNames[i] = portfolios.get(i).getName();
+        }
+        portfolioSelector = new JComboBox<>(portfolioNames);
+        portfolioSelector.addActionListener(this);
+        portfolioSelector.setActionCommand("selectPortfolio");
+        c = new GridBagConstraints();
+        c.fill = GridBagConstraints.BOTH;
+        c.gridx = 0;
+        c.gridy = 2;
+        c.weightx = 0.5;
+        c.weighty = 0.5;
+        this.add(portfolioSelector, c);
+*/
 
 
+        toSelectedPortfolio = new JButton("Please Select A Portfolio");
+        toSelectedPortfolio.addActionListener(this);
+        toSelectedPortfolio.setActionCommand("toSelectedPortfolio");
+        c = new GridBagConstraints();
+        c.fill = GridBagConstraints.BOTH;
+        c.gridx = 1;
+        c.gridy = 2;
+        c.weightx = 0.5;
+        c.weighty = 0.5;
+        this.add(toSelectedPortfolio, c);
 
 
     }
+
+    public void setSelectablePortfolios(){
+        ArrayList<Portfolio> portfolios = GUIMainFrame.currentUser.getAllPortfolios(); //get portfolios
+        String[] portfolioNames = new String[portfolios.size()]; //convert portfolios into names
+        for (int i = 0; i < portfolioNames.length; i++) {
+            portfolioNames[i] = portfolios.get(i).getName();
+        }
+        portfolioSelector = new JComboBox<>(portfolioNames);
+        portfolioSelector.addActionListener(this);
+        portfolioSelector.setActionCommand("selectPortfolio");
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.BOTH;
+        c.gridx = 0;
+        c.gridy = 2;
+        c.weightx = 0.5;
+        c.weighty = 0.5;
+        this.add(portfolioSelector, c);
+    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()){
             case "assetSearch" -> {
-
+                //TODO: implement the entirety of asset search
             }
             case "newPortfolio" -> {
+                //TODO: implement jdialogue or similar for entering name
+                GUIMainFrame.currentUser.addNewPortfolio("Portfolio");
+            }
+            case "selectPortfolio" -> {
+                toSelectedPortfolio.setText((String)portfolioSelector.getSelectedItem());
+            }
+            case "toSelectedPortfolio" -> {
 
             }
-
         }
     }
 }

@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.security.DigestException;
 
 public class GUIMainFrame extends JFrame {
     //MAGIC NUMBERS
@@ -9,7 +8,7 @@ public class GUIMainFrame extends JFrame {
     private static final int WINDOW_HEIGHT = 300;
     public static final int PANEL_OFFSET = 39;
 
-    private JPanel[] panels;
+    public JPanel[] panels;
 
     //PANEL-RELATED MAGIC NUMBERS
     //---------------------------
@@ -69,5 +68,7 @@ public class GUIMainFrame extends JFrame {
     public int getWidth() {
         return WINDOW_WIDTH;
     }
-
+    public GUIMainMenu getMainMenu(){
+        return (GUIMainMenu) panels[GUIMainFrame.MAIN_MENU];
+    }
 }

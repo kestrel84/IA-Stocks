@@ -44,10 +44,10 @@ public class User {
 
 
     //OBJECT METHODS
-    public void addNewPortfolio(){
+    public void addNewPortfolio(String portfolioName){
         //creates a new portfolio
 
-        portfolios.add(new Portfolio(GUIMainFrame.generalFilePath + userID + "Portfolio" + numberOfPortfolios));
+        portfolios.add(new Portfolio(GUIMainFrame.generalFilePath + userID + portfolioName + numberOfPortfolios + ".txt"));
         numberOfPortfolios++;
 
         Database userDatabase = new Database(usersFilePath, USER_FILE_FORMAT_LENGTH);
@@ -65,7 +65,7 @@ public class User {
         //TODO: TEST THIS
         ArrayList<Portfolio> portfolios = new ArrayList<>();
         for (int i = 0; i < numberOfPortfolios; i++) {
-            portfolios.add(new Portfolio(GUIMainFrame.generalFilePath + userID + "Portfolio" + i));
+            portfolios.add(new Portfolio(GUIMainFrame.generalFilePath + userID + "Portfolio" + i + ".txt"));
         }
         return portfolios;
     }

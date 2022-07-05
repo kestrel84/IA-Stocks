@@ -75,6 +75,7 @@ public class GUILoginScreen  extends JPanel implements ActionListener {
                         users) {
                     if (enterUname.getText().equals(u.getUsername()) && enterPassword.getText().equals(u.getPassword())){
                         GUIMainFrame.currentUser = u;
+                        mainFrame.getMainMenu().setSelectablePortfolios();
                         mainFrame.navigate(GUIMainFrame.MAIN_MENU, this);
                         break;
                     }
