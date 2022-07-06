@@ -13,6 +13,9 @@ public class Asset {
     public double getPrice() {
         return price;
     }
+    public double getTotalValue(){
+        return amount*price;
+    }
 
     public void setAmount(int amount) {
         this.amount = amount;

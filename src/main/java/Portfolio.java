@@ -41,6 +41,23 @@ public class Portfolio {
     public String getName() {
         return name;
     }
+    public ArrayList<Stock> getStockList(){
+        return portfolio;
+    }
+    public Stock[] getStockArray(){
+        Stock[] stocks = new Stock[portfolio.size()];
+        for (int i = 0; i < portfolio.size(); i++) {
+            stocks[i] = portfolio.get(i);
+        }
+        return stocks;
+    }
+    public String[] getStockNamesArray(){
+        String[] names = new String[portfolio.size()];
 
+        for (int i = 0; i < portfolio.size(); i++) {
+            names[i]=portfolio.get(i).getName();
+        }
+        return names;
+    }
 
 }
