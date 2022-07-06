@@ -140,7 +140,9 @@ public class GUIMainMenu  extends JPanel implements ActionListener {
                 toSelectedPortfolio.setText((String)portfolioSelector.getSelectedItem());
             }
             case "toSelectedPortfolio" -> {
-
+                GUIPortfolioView.setCurrentPortfolio(GUIMainFrame.currentUser.getAllPortfolios().get(portfolioSelector.getSelectedIndex()));
+                mainFrame.getPortfolioView().setupComponents();
+                mainFrame.navigate(GUIMainFrame.PORTFOLIO_VIEW, this);
             }
         }
     }

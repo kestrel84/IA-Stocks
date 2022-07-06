@@ -9,7 +9,7 @@ public class GUIPortfolioView  extends JPanel implements ActionListener {
 
     //PORTFOLIO CURRENTLY BEING VIEWED
     //--------------------------------
-    public static Portfolio currentPortfolio;
+    private static Portfolio currentPortfolio;
 
     //COMPONENTS
     JLabel title;
@@ -30,7 +30,7 @@ public class GUIPortfolioView  extends JPanel implements ActionListener {
         setLayout(new GridLayout(0,1));
         width=getWidth();
         height=getHeight();
-
+/*
         //TITLE
         title = new JLabel(currentPortfolio.getName());
         title.setFont(new Font("Sans Serif", Font.PLAIN, 30));
@@ -52,7 +52,7 @@ public class GUIPortfolioView  extends JPanel implements ActionListener {
         assetList.setActionCommand("selectAsset");
         this.add(assetList);
 
-        basicAssetInfo = new JLabel(currentPortfolio.getStockArray()[assetList.getSelectedIndex()].getName()); //
+        basicAssetInfo = new JLabel("Please select and asset"); //
         basicAssetInfo.setFont(new Font("Sans Serif", Font.PLAIN, 30));
         basicAssetInfo.setHorizontalAlignment(SwingConstants.CENTER);
         basicAssetInfo.setVerticalAlignment(SwingConstants.CENTER);
@@ -60,11 +60,60 @@ public class GUIPortfolioView  extends JPanel implements ActionListener {
 
         goToAssetView = new JButton("Please select an asset");
         goToAssetView.addActionListener(this);
-        goToAssetView.setActionCommand("mainMenu");
+        goToAssetView.setActionCommand("toAssetView");
         this.add(goToAssetView);
 
+        //BACK
+        back = new JButton("Back to main menu");
+        back.addActionListener(this);
+        back.setActionCommand("toAssetView");
+        this.add(back);
+*/
 
+    }
 
+    public static void setCurrentPortfolio(Portfolio p) {
+        currentPortfolio = p;
+    }
+    public void setupComponents(){
+        //TITLE
+        this.removeAll();
+
+        title = new JLabel(currentPortfolio.getName());
+        title.setFont(new Font("Sans Serif", Font.PLAIN, 30));
+        title.setHorizontalAlignment(SwingConstants.CENTER);
+        title.setVerticalAlignment(SwingConstants.CENTER);
+        this.add(title);
+
+        //TOTAL VALUE
+        totalValue = new JLabel("PLACEHOLDER FOR TOTAL VALUE"); //TODO: implement the total value of a portfolio
+        totalValue.setFont(new Font("Sans Serif", Font.PLAIN, 30));
+        totalValue.setHorizontalAlignment(SwingConstants.CENTER);
+        totalValue.setVerticalAlignment(SwingConstants.CENTER);
+        this.add(totalValue);
+
+        //ASSET STUFF
+        assetList = new JComboBox<>(currentPortfolio.getStockNamesArray());
+        assetList.addActionListener(this);
+        assetList.setActionCommand("selectAsset");
+        this.add(assetList);
+
+        basicAssetInfo = new JLabel("Please select an asset"); //
+        basicAssetInfo.setFont(new Font("Sans Serif", Font.PLAIN, 30));
+        basicAssetInfo.setHorizontalAlignment(SwingConstants.CENTER);
+        basicAssetInfo.setVerticalAlignment(SwingConstants.CENTER);
+        this.add(basicAssetInfo);
+
+        goToAssetView = new JButton("Please select an asset");
+        goToAssetView.addActionListener(this);
+        goToAssetView.setActionCommand("toAssetView");
+        this.add(goToAssetView);
+
+        //BACK
+        back = new JButton("Back to main menu");
+        back.addActionListener(this);
+        back.setActionCommand("toMainMenu");
+        this.add(back);
     }
 
     @Override
@@ -74,6 +123,7 @@ public class GUIPortfolioView  extends JPanel implements ActionListener {
                 basicAssetInfo.setText(currentPortfolio.getStockArray()[assetList.getSelectedIndex()].getName() + " | " + currentPortfolio.getStockArray()[assetList.getSelectedIndex()].getAmount() + " | " + currentPortfolio.getStockArray()[assetList.getSelectedIndex()].getTotalValue());
                 goToAssetView.setText(currentPortfolio.getStockArray()[assetList.getSelectedIndex()].getName());
             }
+            case "toMainMenu" -> mainFrame.navigate(GUIMainFrame.MAIN_MENU, this);
 
         }
     }

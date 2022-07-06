@@ -4,8 +4,8 @@ import java.awt.*;
 public class GUIMainFrame extends JFrame {
     //MAGIC NUMBERS
     //------------
-    private static final int WINDOW_WIDTH = 500;
-    private static final int WINDOW_HEIGHT = 300;
+    private static final int WINDOW_WIDTH = 600;
+    private static final int WINDOW_HEIGHT = 400;
     public static final int PANEL_OFFSET = 39;
 
     public JPanel[] panels;
@@ -48,8 +48,9 @@ public class GUIMainFrame extends JFrame {
         panels[0] = new GUIMainMenu(this);
         panels[1] = new GUILoginScreen(this);
         panels[2] = new GUICreateUser(this);
+        panels[3] = new GUIPortfolioView(this);
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             add(panels[i]);
             panels[i].setVisible(false);
         }
@@ -70,5 +71,8 @@ public class GUIMainFrame extends JFrame {
     }
     public GUIMainMenu getMainMenu(){
         return (GUIMainMenu) panels[GUIMainFrame.MAIN_MENU];
+    }
+    public GUIPortfolioView getPortfolioView(){
+        return (GUIPortfolioView) panels[GUIMainFrame.PORTFOLIO_VIEW];
     }
 }
