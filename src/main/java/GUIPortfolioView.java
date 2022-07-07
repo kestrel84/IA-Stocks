@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class GUIPortfolioView  extends JPanel implements ActionListener {
+public class GUIPortfolioView extends JPanel implements ActionListener {
     private GUIMainFrame mainFrame;    //parent frame holder
     private final int width, height;   //width and height of the panel for easy access
 
@@ -76,9 +76,10 @@ public class GUIPortfolioView  extends JPanel implements ActionListener {
         currentPortfolio = p;
     }
     public void setupComponents(){
-        //TITLE
+        //RESET THE FRAME FIRST
         this.removeAll();
 
+        //TITLE
         title = new JLabel(currentPortfolio.getName());
         title.setFont(new Font("Sans Serif", Font.PLAIN, 30));
         title.setHorizontalAlignment(SwingConstants.CENTER);
