@@ -49,8 +49,9 @@ public class GUIMainFrame extends JFrame {
         panels[1] = new GUILoginScreen(this);
         panels[2] = new GUICreateUser(this);
         panels[3] = new GUIPortfolioView(this);
+        panels[4] = new GUIAssetView(this);
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
             add(panels[i]);
             panels[i].setVisible(false);
         }
@@ -74,5 +75,8 @@ public class GUIMainFrame extends JFrame {
     }
     public GUIPortfolioView getPortfolioView(){
         return (GUIPortfolioView) panels[GUIMainFrame.PORTFOLIO_VIEW];
+    }
+    public GUIAssetView getAssetView(){
+        return (GUIAssetView) panels[GUIMainFrame.ASSET_VIEW];
     }
 }

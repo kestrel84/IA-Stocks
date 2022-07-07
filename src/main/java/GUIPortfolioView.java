@@ -125,6 +125,11 @@ public class GUIPortfolioView extends JPanel implements ActionListener {
                 goToAssetView.setText(currentPortfolio.getStockArray()[assetList.getSelectedIndex()].getName());
             }
             case "toMainMenu" -> mainFrame.navigate(GUIMainFrame.MAIN_MENU, this);
+            case "toAssetView" -> {
+                mainFrame.getAssetView().setCurrentStock(currentPortfolio.getStockArray()[assetList.getSelectedIndex()]);
+                mainFrame.getAssetView().setupComponents();
+                mainFrame.navigate(GUIMainFrame.ASSET_VIEW, this);
+            }
 
         }
     }
