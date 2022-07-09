@@ -11,13 +11,16 @@ public class Database {
     private final int lineLength;  //length of each line of the text file
     private int size;              //number of lines in the database
 
+    private final int NO_OF_CARRIAGE_RETURNS = 1;  //TODO: IF ON WINDOWS, CHANGE THIS TO 2
+
+
     //CONSTRUCTORS
     //------------
     public Database(String filePath, int lineLength) {
         //creates an empty database
 
         this.filePath = filePath;
-        this.lineLength = lineLength + 2;
+        this.lineLength = lineLength + NO_OF_CARRIAGE_RETURNS;
 
         //get the actual amount of lines in the file
         size = getFileSize();
@@ -26,7 +29,7 @@ public class Database {
         //creates a database filled with existing strings (essentially useless)
 
         this.filePath = filePath;
-        this.lineLength = lineLength+2;
+        this.lineLength = lineLength + NO_OF_CARRIAGE_RETURNS;
 
         boolean tooLong = false;
         for (String s :
@@ -51,7 +54,7 @@ public class Database {
     public void appendRecord(String string){
         //pads a string and appends it to the end of the text file
 
-        if (string.length() > lineLength-2){
+        if (string.length() > lineLength-NO_OF_CARRIAGE_RETURNS){
             System.out.println("error - string too long to add");
         } else {
             try (
@@ -75,7 +78,7 @@ public class Database {
         //ZERO INDEXED - FIRST LINE IS AT ZERO, SECOND AT 1, ETC
         //pads a string and replaces a record at a line number with it
 
-        if (string.length() > lineLength-2){
+        if (string.length() > lineLength-NO_OF_CARRIAGE_RETURNS){
             System.out.println("error - string too long to add");
         } else {
             try (

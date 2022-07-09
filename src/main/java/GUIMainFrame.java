@@ -50,8 +50,9 @@ public class GUIMainFrame extends JFrame {
         panels[2] = new GUICreateUser(this);
         panels[3] = new GUIPortfolioView(this);
         panels[4] = new GUIAssetView(this);
+        panels[5] = new GUIAssetSearch(this);
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < panels.length; i++) {
             add(panels[i]);
             panels[i].setVisible(false);
         }

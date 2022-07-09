@@ -131,6 +131,7 @@ public class GUIMainMenu  extends JPanel implements ActionListener {
         switch (e.getActionCommand()){
             case "assetSearch" -> {
                 //TODO: implement the entirety of asset search
+                mainFrame.navigate(GUIMainFrame.ASSET_SEARCH, this);
             }
             case "newPortfolio" -> {
                 //TODO: implement jdialogue or similar for entering name
