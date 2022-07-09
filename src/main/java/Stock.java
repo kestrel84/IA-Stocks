@@ -18,8 +18,8 @@ public class Stock extends Asset{
     public Stock(String fileFormat){
         //constructor that takes a string in the format used for files and converts it into a stock object
         super(Integer.parseInt(fileFormat.substring(STOCK_FILE_FORMAT_LENGTH /2, 3*(STOCK_FILE_FORMAT_LENGTH /4)).trim()), Double.parseDouble((fileFormat.substring(3*(STOCK_FILE_FORMAT_LENGTH /4), STOCK_FILE_FORMAT_LENGTH)).trim()));
-        name = fileFormat.substring(0, STOCK_FILE_FORMAT_LENGTH /4);
-        symbol = fileFormat.substring(STOCK_FILE_FORMAT_LENGTH /4, STOCK_FILE_FORMAT_LENGTH /2);
+        name = fileFormat.substring(0, STOCK_FILE_FORMAT_LENGTH/4).trim();
+        symbol = fileFormat.substring(STOCK_FILE_FORMAT_LENGTH/4, STOCK_FILE_FORMAT_LENGTH/2).trim();
     }
 
     public String getSymbol() {
@@ -29,6 +29,7 @@ public class Stock extends Asset{
         return name;
     }
     public void updatePrice(){
+        System.out.println(AlphaVantageWrapper.getClosingDailyPrice(symbol));
         super.setPrice(AlphaVantageWrapper.getClosingDailyPrice(symbol));
     }
 

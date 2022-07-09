@@ -3,6 +3,7 @@ import com.crazzyghost.alphavantage.Config;
 import com.crazzyghost.alphavantage.parameters.DataType;
 import com.crazzyghost.alphavantage.parameters.Interval;
 import com.crazzyghost.alphavantage.parameters.OutputSize;
+import com.crazzyghost.alphavantage.timeseries.response.QuoteResponse;
 import com.crazzyghost.alphavantage.timeseries.response.StockUnit;
 import com.crazzyghost.alphavantage.timeseries.response.TimeSeriesResponse;
 
@@ -38,8 +39,33 @@ public class AlphaVantageWrapper {
                 .dataType(DataType.JSON)
                 .fetchSync();
 
-            return resp.getStockUnits().get(0).getClose();
+            if (resp.getStockUnits().size() > 0) {
+                return resp.getStockUnits().get(0).getClose();
+            } else {
+                return 0.0;
+            }
     }
+
+    public static void testQuoteResponse(String symbol){
+        QuoteResponse resp = AlphaVantage.api()
+                .timeSeries()
+                .quote()
+                .forSymbol(symbol)
+                .fetchSync();
+
+        System.out.println("High:               " + resp.getHigh());
+        System.out.println("Low:                " + resp.getLow());
+        System.out.println("Open:               " + resp.getOpen());
+        //System.out.println(resp.getClose());
+        System.out.println("Volume:             " + resp.getVolume());
+        System.out.println("Symbol:             " + resp.getSymbol());
+        System.out.println("Latest Trading Day: " + resp.getLatestTradingDay());
+        System.out.println("Previous Close:     " + resp.getPreviousClose());
+        System.out.println("Change:             " + resp.getChange());
+        System.out.println("Percent Change:     " + resp.getChangePercent());
+        System.out.println();
+    }
+
 
     public static void initialiseApi(){
         //configure wrapper

@@ -11,7 +11,7 @@ public class Database {
     private final int lineLength;  //length of each line of the text file
     private int size;              //number of lines in the database
 
-    private final int NO_OF_CARRIAGE_RETURNS = 1;  //TODO: IF ON WINDOWS, CHANGE THIS TO 2
+    private final int NO_OF_CARRIAGE_RETURNS = 2;  //IF ON MAC, CHANGE THIS TO 1
 
 
     //CONSTRUCTORS

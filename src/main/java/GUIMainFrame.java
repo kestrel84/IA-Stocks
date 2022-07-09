@@ -43,7 +43,6 @@ public class GUIMainFrame extends JFrame {
         setResizable(false);
         setTitle("Stonk Tracker");
 
-        //TODO: initialise and add ALL panels
         panels = new JPanel[6];
         panels[0] = new GUIMainMenu(this);
         panels[1] = new GUILoginScreen(this);

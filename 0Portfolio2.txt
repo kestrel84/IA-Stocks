@@ -2,3 +2,4 @@ IBM                      IBM                      10                       130.0
 Barclays                 BCS                      10                       7.96                     
 IBM                      IBM                      10                       134.91                   
 Barclays                 BCS                      10                       7.63                     
+AstraZeneca              AZN                      10                       0.0                      

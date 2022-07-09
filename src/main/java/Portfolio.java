@@ -18,21 +18,20 @@ public class Portfolio {
         for (int i = 0; i < db.getSize(); i++) {
             portfolio.add(new Stock(db.getRecordAt(i)));
         }
+
+        //update the price of all the stocks
+        for (Stock s:
+                portfolio) {
+            s.updatePrice();
+        }
     }
 
     public void addStock(Stock stock){
         portfolio.add(stock);
+        db.appendRecord(stock.convertToFileFormat());
     }
     public void updateAllPrices(){
         //TODO: updates all the prices of all the assets
-    }
-    public void writeToFile(){
-        //writes the entire arraylist to a file
-
-        for (Stock a:
-             portfolio) {
-            db.appendRecord(a.convertToFileFormat());
-        }
     }
     public String getStockStringAt(int i){
         return portfolio.get(i).convertToFileFormat();
