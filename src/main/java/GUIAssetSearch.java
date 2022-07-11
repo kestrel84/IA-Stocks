@@ -16,7 +16,7 @@ public class GUIAssetSearch  extends JPanel implements ActionListener {
 
     //STOCK LIST
     private static final String[] allStockNames = new String[]{
-            "Admiral Group",
+                    "Admiral Group",
                     "Anglo American",
                     "Antofagasta Holdings",
                     "Ashtead Group",

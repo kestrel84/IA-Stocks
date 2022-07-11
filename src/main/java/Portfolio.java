@@ -58,5 +58,13 @@ public class Portfolio {
         }
         return names;
     }
+    public double getTotalValue(){
+        double counter = 0;
+        for (Stock s :
+                portfolio) {
+            counter += s.getTotalValue();
+        }
+        return counter;
+    }
 
 }

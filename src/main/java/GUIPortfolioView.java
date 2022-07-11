@@ -87,7 +87,7 @@ public class GUIPortfolioView extends JPanel implements ActionListener {
         this.add(title);
 
         //TOTAL VALUE
-        totalValue = new JLabel("PLACEHOLDER FOR TOTAL VALUE"); //TODO: implement the total value of a portfolio
+        totalValue = new JLabel(Double.toString(currentPortfolio.getTotalValue())); //TODO: implement the total value of a portfolio
         totalValue.setFont(new Font("Sans Serif", Font.PLAIN, 30));
         totalValue.setHorizontalAlignment(SwingConstants.CENTER);
         totalValue.setVerticalAlignment(SwingConstants.CENTER);
