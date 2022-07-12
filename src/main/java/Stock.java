@@ -29,8 +29,8 @@ public class Stock extends Asset{
         return name;
     }
     public void updatePrice(){
-        System.out.println(AlphaVantageWrapper.getClosingDailyPrice(symbol));
         super.setPrice(AlphaVantageWrapper.getClosingDailyPrice(symbol));
+        System.out.println(super.getPrice());
     }
 
     public String convertToFileFormat(){

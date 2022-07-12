@@ -6,6 +6,5 @@ public class Main {
         //GUIMainFrame m = new GUIMainFrame("/Users/maxashton/Desktop/IA-Stonks/");
         //GUIMainFrame m = new GUIMainFrame("C:\\Users\\maxha\\Documents\\GitHub\\IA-Stonks\\");
         m.setVisible(true);
-
     }
 }

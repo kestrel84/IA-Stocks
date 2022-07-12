@@ -246,7 +246,7 @@ public class GUIAssetSearch  extends JPanel implements ActionListener {
         assetSelector.setActionCommand("selectAsset");
         this.add(assetSelector);
 
-        assetInfo = new JLabel("Please select an asset");
+        assetInfo = new JLabel("Please select an asset"); //TODO: update this
         assetInfo.setFont(new Font("Sans Serif", Font.PLAIN, 30));
         assetInfo.setHorizontalAlignment(SwingConstants.CENTER);
         assetInfo.setVerticalAlignment(SwingConstants.CENTER);
@@ -268,7 +268,7 @@ public class GUIAssetSearch  extends JPanel implements ActionListener {
         switch (e.getActionCommand()){
             case "mainMenu" -> mainFrame.navigate(GUIMainFrame.MAIN_MENU, this);
             case "assetView" -> {
-                mainFrame.getAssetView().setCurrentStock(new Stock(1, 0.0, allStockSymbols[assetSelector.getSelectedIndex()], allStockNames[assetSelector.getSelectedIndex()] ));
+                mainFrame.getAssetView().setCurrentStock(new Stock(1, allStockSymbols[assetSelector.getSelectedIndex()], allStockNames[assetSelector.getSelectedIndex()] ));
                 mainFrame.getAssetView().setupComponents();
                 mainFrame.navigate(GUIMainFrame.ASSET_VIEW, this);
             }

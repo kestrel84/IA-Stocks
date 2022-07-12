@@ -130,18 +130,18 @@ public class GUIMainMenu  extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()){
             case "assetSearch" -> {
-                //TODO: implement the entirety of asset search
                 mainFrame.navigate(GUIMainFrame.ASSET_SEARCH, this);
             }
             case "newPortfolio" -> {
-                //TODO: implement jdialogue or similar for entering name
+                //TODO: rework the whole name system for portfolios
                 GUIMainFrame.currentUser.addNewPortfolio("Portfolio");
             }
             case "selectPortfolio" -> {
-                toSelectedPortfolio.setText((String)portfolioSelector.getSelectedItem());
+                toSelectedPortfolio.setText("To: " + portfolioSelector.getSelectedItem());
             }
             case "toSelectedPortfolio" -> {
                 GUIPortfolioView.setCurrentPortfolio(GUIMainFrame.currentUser.getAllPortfolios().get(portfolioSelector.getSelectedIndex()));
+                GUIPortfolioView.getCurrentPortfolio().updateAllPrices();
                 mainFrame.getPortfolioView().setupComponents();
                 mainFrame.navigate(GUIMainFrame.PORTFOLIO_VIEW, this);
             }

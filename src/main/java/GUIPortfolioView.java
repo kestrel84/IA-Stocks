@@ -30,50 +30,14 @@ public class GUIPortfolioView extends JPanel implements ActionListener {
         setLayout(new GridLayout(0,1));
         width=getWidth();
         height=getHeight();
-/*
-        //TITLE
-        title = new JLabel(currentPortfolio.getName());
-        title.setFont(new Font("Sans Serif", Font.PLAIN, 30));
-        title.setHorizontalAlignment(SwingConstants.CENTER);
-        title.setVerticalAlignment(SwingConstants.CENTER);
-        this.add(title);
-
-        //TOTAL VALUE
-        totalValue = new JLabel(); //implement the total value
-        totalValue.setFont(new Font("Sans Serif", Font.PLAIN, 30));
-        totalValue.setHorizontalAlignment(SwingConstants.CENTER);
-        totalValue.setVerticalAlignment(SwingConstants.CENTER);
-        this.add(totalValue);
-
-        //ASSET THINGS
-
-        assetList = new JComboBox<>(currentPortfolio.getStockNamesArray());
-        assetList.addActionListener(this);
-        assetList.setActionCommand("selectAsset");
-        this.add(assetList);
-
-        basicAssetInfo = new JLabel("Please select and asset"); //
-        basicAssetInfo.setFont(new Font("Sans Serif", Font.PLAIN, 30));
-        basicAssetInfo.setHorizontalAlignment(SwingConstants.CENTER);
-        basicAssetInfo.setVerticalAlignment(SwingConstants.CENTER);
-        this.add(basicAssetInfo);
-
-        goToAssetView = new JButton("Please select an asset");
-        goToAssetView.addActionListener(this);
-        goToAssetView.setActionCommand("toAssetView");
-        this.add(goToAssetView);
-
-        //BACK
-        back = new JButton("Back to main menu");
-        back.addActionListener(this);
-        back.setActionCommand("toAssetView");
-        this.add(back);
-*/
 
     }
 
     public static void setCurrentPortfolio(Portfolio p) {
         currentPortfolio = p;
+    }
+    public static Portfolio getCurrentPortfolio(){
+        return currentPortfolio;
     }
     public void setupComponents(){
         //RESET THE FRAME FIRST

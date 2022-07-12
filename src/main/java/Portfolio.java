@@ -19,11 +19,7 @@ public class Portfolio {
             portfolio.add(new Stock(db.getRecordAt(i)));
         }
 
-        //update the price of all the stocks
-        for (Stock s:
-                portfolio) {
-            s.updatePrice();
-        }
+
     }
 
     public void addStock(Stock stock){
@@ -31,7 +27,10 @@ public class Portfolio {
         db.appendRecord(stock.convertToFileFormat());
     }
     public void updateAllPrices(){
-        //TODO: updates all the prices of all the assets
+        for (Stock s:
+                portfolio) {
+            s.updatePrice();
+        }
     }
     public String getStockStringAt(int i){
         return portfolio.get(i).convertToFileFormat();
