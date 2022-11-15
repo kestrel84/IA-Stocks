@@ -27,8 +27,6 @@ public class GUIMainFrame extends JFrame {
     //-----------------
     public static String generalFilePath;
 
-
-
     public GUIMainFrame(String filePath){
         //set the static file path
         generalFilePath = filePath;

@@ -1,1 +1,6 @@
 IBM                      IBM                      10                       130.02                   
+TUI AG                   TUI.L                    1                        0.0                      
+Segro                    SGRO.L                   10                       0.0                      
+IBM                      IBM                      3                        144.5999                 
+IBM                      IBM                      3                        144.5999                 
+IBM                      IBM                      3                        144.5999                 

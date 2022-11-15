@@ -64,7 +64,7 @@ public class GUIAssetView  extends JPanel implements ActionListener {
         portfolioSelector.setActionCommand("selectPortfolio");
         this.add(portfolioSelector);
 
-        numberOfAsset = new JTextField();
+        numberOfAsset = new JTextField("Enter number of assets to add");
         this.add(numberOfAsset);
 
         addToPortfolio = new JButton("Please select a portfolio");
