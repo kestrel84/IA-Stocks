@@ -30,6 +30,7 @@ public class AlphaVantageWrapper {
     }
 
     public static double getClosingDailyPrice(String symbol){
+        /*
         TimeSeriesResponse resp = AlphaVantage.api()
                 .timeSeries()
                 .intraday()
@@ -40,10 +41,32 @@ public class AlphaVantageWrapper {
                 .fetchSync();
 
             if (resp.getStockUnits().size() > 0) {
-                return resp.getStockUnits().get(0).getClose();
+                System.out.println(symbol);
+                double price = resp.getStockUnits().get(0).getClose();
+                System.out.println(price);
+                return price;
             } else {
+                System.out.println(symbol);
+                System.out.println(0);
                 return 0.0;
             }
+
+         */
+
+        QuoteResponse resp = AlphaVantage.api()
+                .timeSeries()
+                .quote()
+                .forSymbol(symbol)
+                .fetchSync();
+
+        if (resp.getPreviousClose() == 0){
+            System.out.println(symbol + ": no data");
+            return -1;
+        } else {
+            System.out.println(symbol + ": " + resp.getPreviousClose());
+            return resp.getPreviousClose();
+        }
+
     }
 
     public static void testQuoteResponse(String symbol){

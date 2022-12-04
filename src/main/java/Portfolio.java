@@ -37,7 +37,7 @@ public class Portfolio {
     }
 
     public String getName() {
-        return name;
+        return "Portfolio " + name.charAt(10);
     } //TODO: This getName needs a lot of refining to remove the userid and portfolio number either side of it
     public ArrayList<Stock> getStockList(){
         return portfolio;
