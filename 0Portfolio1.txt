@@ -4,3 +4,4 @@ Segro                    SGRO.L                   10                       0.0
 IBM                      IBM                      3                        144.5999                 
 IBM                      IBM                      3                        144.5999                 
 IBM                      IBM                      3                        144.5999                 
+BHP Group                BHP.L                    30                       2566.0                   
