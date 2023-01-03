@@ -1,2 +1,4 @@
 IBM                      IBM                      100                      140.48                   
 Tesco                    TSCO                     2                        203.4                    
+IBM                      IBM                      3                        144.5999                 
+IBM                      IBM                      3                        144.5999                 

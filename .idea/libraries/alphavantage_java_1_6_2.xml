@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="alphavantage-java-1.6.2">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/github/crazzyghost/alphavantage-java/1.6.2/alphavantage-java-1.6.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
